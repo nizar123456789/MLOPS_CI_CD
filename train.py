@@ -1,10 +1,14 @@
-import pandas as pd 
-df_drug=pd.read_csv('Data/drug200.csv')
+import pandas as pd
+
+df_drug = pd.read_csv("Data/drug200.csv")
 drug_df = df_drug.sample(frac=1)
 from sklearn.model_selection import train_test_split
-Y=drug_df['Drug']
-X=drug_df.drop('Drug', axis=1)
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=42)
+
+Y = drug_df["Drug"]
+X = drug_df.drop("Drug", axis=1)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, Y, test_size=0.3, random_state=42
+)
 
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
@@ -12,8 +16,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
-cat_col = [1,2,3]
-num_col = [0,4]
+cat_col = [1, 2, 3]
+num_col = [0, 4]
 
 transform = ColumnTransformer(
     [
@@ -38,7 +42,7 @@ f1 = f1_score(y_test, predictions, average="macro")
 
 print("Accuracy:", str(round(accuracy, 2) * 100) + "%", "F1:", round(f1, 2))
 
-with open("Results/metrics.txt","w") as f:
+with open("Results/metrics.txt", "w") as f:
     f.write("Accuracy: " + str(round(accuracy, 2) * 100) + "%\n")
     f.write("F1: " + str(round(f1, 2)) + "\n")
 import matplotlib.pyplot as plt

@@ -1,2 +1,2 @@
-Accuracy: 98.0%
-F1: 0.99
+Accuracy: 100.0%
+F1: 1.0
