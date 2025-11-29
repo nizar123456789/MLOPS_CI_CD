@@ -39,3 +39,10 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: make eval
+      - name: Update Changes
+        env:
+            NAME:${{ secrets.USER_NAME }}
+            EMAIL:${{ secrets.USER_EMAIL }}
+        run: make update-branch
+
+    
